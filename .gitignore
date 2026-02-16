@@ -1,0 +1,7 @@
+build/
+logs/
+results/
+*.o
+*.out
+*.err
+*.exe
