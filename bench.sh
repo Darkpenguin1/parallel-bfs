@@ -14,16 +14,6 @@ echo "Building programs..."
 make clean
 make
 
-echo
-echo "===== REQUIRED CASE: Tom Hanks / 3 ====="
-echo "--- Sequential ---"
-srun --cpu-bind=cores ./seq_client "Tom Hanks" 3
-echo "--- Parallel ---"
-srun --cpu-bind=cores ./level_client "Tom Hanks" 3
-
-echo
-echo "===== MORE TESTS (different nodes/depths) ====="
-
 TRIALS=3
 
 run_trials () {
@@ -40,19 +30,17 @@ run_trials () {
   done
 }
 
-# Pick a small set so you don't blow time limits
-run_trials "SEQ" ./seq_client "Tom Hanks" 1
-run_trials "SEQ" ./seq_client "Tom Hanks" 2
-run_trials "SEQ" ./seq_client "Tom Hanks" 4
-run_trials "SEQ" ./seq_client "Brad Pitt" 3
-run_trials "SEQ" ./seq_client "Scarlett Johansson" 2
+echo
+echo "===== REQUIRED CASE: Tom Hanks / 3 ====="
+run_trials "SEQ" ./seq_client "Tom Hanks" 3
+run_trials "PAR" ./level_client "Tom Hanks" 3
 
-run_trials "PAR" ./level_client "Tom Hanks" 1
+echo
+echo "===== EXTRA TESTS ====="
+run_trials "SEQ" ./seq_client "Tom Hanks" 2
 run_trials "PAR" ./level_client "Tom Hanks" 2
-run_trials "PAR" ./level_client "Tom Hanks" 4
-run_trials "PAR" ./level_client "Brad Pitt" 3
-run_trials "PAR" ./level_client "Scarlett Johansson" 2
+run_trials "SEQ" ./seq_client "Brad Pitt" 2
+run_trials "PAR" ./level_client "Brad Pitt" 2
 
 echo
 echo "Done."
-echo "Check logs in logs/%x-%j.out and logs/%x-%j.err"
