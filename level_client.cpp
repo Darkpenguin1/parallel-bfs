@@ -69,7 +69,7 @@ std::string fetch_neighbors(CURL* curl, const std::string& node) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); // Verbose Logging
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L); // Verbose Logging
 
     // Set a User-Agent header to avoid potential blocking by the server
     struct curl_slist* headers = nullptr;
@@ -214,12 +214,14 @@ int main(int argc, char* argv[]) {
 
 
     const auto start{std::chrono::steady_clock::now()};
-    
-    
+
+    size_t level_idx = 0;
     for (const auto& n : bfs(start_node, depth, mu)) {
       for (const auto& node : n)
-	    std::cout << "- " << node << "\n";
-      std::cout<<n.size()<<"\n";
+        if (debug) {
+          for (const auto& node : n)
+            std::cout << "- " << node << "\n";
+        }
     }
     
     const auto finish{std::chrono::steady_clock::now()};
