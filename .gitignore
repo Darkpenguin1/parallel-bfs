@@ -1,7 +1,8 @@
-build/
-logs/
-results/
+# build outputs
 *.o
-*.out
-*.err
-*.exe
+level_client
+seq_client
+
+
+# windows mark-of-the-web artifacts
+*:Zone.Identifier

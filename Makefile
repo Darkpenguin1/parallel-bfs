@@ -1,14 +1,25 @@
-CXXFLAGS=-I./third_party/rapidjson/include
-LDFLAGS=-lcurl
-LD=g++
-CC=g++
+# ---- Compiler settings ----
+CC = g++
+CXXFLAGS = -O2 -std=c++17 -Ithird_party/rapidjson/include
+LDFLAGS = -lcurl
 
-all: level_client par_level_client
+# ---- Targets ----
+all: seq_client level_client
 
+# ---- Sequential build ----
+seq_client: seq.o
+	$(CC) $< -o $@ $(LDFLAGS)
+
+seq.o: seq.cpp
+	$(CC) $(CXXFLAGS) -c $<
+
+# ---- Parallel build ----
 level_client: level_client.o
-	$(LD) $< -g -o $@ $(LDFLAGS)
+	$(CC) $< -o $@ $(LDFLAGS) -pthread
 
+level_client.o: level_client.cpp
+	$(CC) $(CXXFLAGS) -c $<
 
-
+# ---- Clean ----
 clean:
-	-rm level_client level_client.o
+	rm -f seq_client level_client *.o
