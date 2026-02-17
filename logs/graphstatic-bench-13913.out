@@ -1,0 +1,37 @@
+Building programs...
+rm -f seq_client level_client *.o
+g++ -O2 -std=c++17 -Ithird_party/rapidjson/include -c seq.cpp
+g++ seq.o -o seq_client -lcurl
+g++ -O2 -std=c++17 -Ithird_party/rapidjson/include -c level_client.cpp
+g++ level_client.o -o level_client -lcurl -pthread
+
+===== REQUIRED CASE: Tom Hanks / 3 =====
+--- Sequential ---
+Time to crawl: 72.0956s
+--- Parallel ---
+Time to crawl: 9.34907s
+
+===== MORE TESTS (different nodes/depths) =====
+
+[SEQ] node="Tom Hanks" depth=1
+  trial 1:
+Time to crawl: 0.160768s
+  trial 2:
+Time to crawl: 0.160168s
+  trial 3:
+Time to crawl: 0.159812s
+
+[SEQ] node="Tom Hanks" depth=2
+  trial 1:
+Time to crawl: 3.3019s
+  trial 2:
+Time to crawl: 3.28813s
+  trial 3:
+Time to crawl: 3.29675s
+
+[SEQ] node="Tom Hanks" depth=4
+  trial 1:
+Time to crawl: 479.388s
+  trial 2:
+Time to crawl: 480.52s
+  trial 3:

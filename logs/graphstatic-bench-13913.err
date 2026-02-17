@@ -1,0 +1,19 @@
+seq.cpp:19: warning: "RAPIDJSON_PARSE_ERROR_NORETURN" redefined
+   19 | #define RAPIDJSON_PARSE_ERROR_NORETURN(code, offset) \
+      | 
+In file included from seq.cpp:10:
+third_party/rapidjson/include/rapidjson/reader.h:100: note: this is the location of the previous definition
+  100 | #define RAPIDJSON_PARSE_ERROR_NORETURN(parseErrorCode, offset) \
+      | 
+level_client.cpp:23: warning: "RAPIDJSON_PARSE_ERROR_NORETURN" redefined
+   23 | #define RAPIDJSON_PARSE_ERROR_NORETURN(code, offset) \
+      | 
+In file included from level_client.cpp:10:
+third_party/rapidjson/include/rapidjson/reader.h:100: note: this is the location of the previous definition
+  100 | #define RAPIDJSON_PARSE_ERROR_NORETURN(parseErrorCode, offset) \
+      | 
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 13913 ON gal-c1 CANCELLED AT 2026-02-16T20:05:51 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 13913.10 ON gal-c1 CANCELLED AT 2026-02-16T20:05:51 DUE TO TIME LIMIT ***
+srun: error: gal-c1: task 0: Terminated
+srun: Terminating StepId=13913.10

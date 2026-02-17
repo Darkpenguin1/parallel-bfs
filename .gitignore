@@ -1,8 +1,9 @@
-# build outputs
+# build artifacts
 *.o
+*_client
 level_client
 seq_client
 
-
-# windows mark-of-the-web artifacts
-*:Zone.Identifier
+# optional: keep logs tracked, but ignore future job noise if desired
+# logs/*.err
+# logs/*.out
