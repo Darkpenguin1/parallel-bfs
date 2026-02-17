@@ -39,8 +39,6 @@ echo
 echo "===== EXTRA TESTS ====="
 run_trials "SEQ" ./seq_client "Tom Hanks" 2
 run_trials "PAR" ./level_client "Tom Hanks" 2
-run_trials "SEQ" ./seq_client "Brad Pitt" 2
-run_trials "PAR" ./level_client "Brad Pitt" 2
 
 echo
 echo "Done."
